@@ -45,7 +45,7 @@ app.use('/hotmanga', hotmangaRoute);
 app.use('/hotloader', hotmangaloaderRoute);
 app.use('/newmanga', newmangaRoute);
 app.use('/newloader', newmangaloaderRoute);
-app.use('/test', testRoute);
+// app.use('/test', testRoute);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

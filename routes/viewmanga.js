@@ -31,7 +31,6 @@ router.get("/", async function (req, res, next) {
             Referer: "https://mangakakalot.com/",
           },
         };
-        // console.log(image);
         const data = got(image, options)
           .then((result) => {
             return result.body;
@@ -41,10 +40,8 @@ router.get("/", async function (req, res, next) {
           });
         return data;
       });
-      // console.log(images2);
       const vals = await Promise.allSettled(images2);
       const values = vals.map((elem) => {
-        // console.log(Base64.encode(elem.value));
         return "data:image/png;base64," + Base64.encode(elem.value);
       });
       res.render("viewmanga", {
