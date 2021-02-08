@@ -1,0 +1,61 @@
+<% include include/header %>
+<style>@media(max-width : 768px){
+    .slick-dots{display: none !important;}
+    }</style>
+<div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1>Popular Manga List</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                        <div class="slider movie-items">
+                                <div class="container">
+                        <div class="row">
+                                <div  class="slick-multiItemSlider ">
+                                        <% spotlight.forEach(function(item){ %>
+                                  <div class="movie-item">
+                                    <div class="mv-img">
+                                      <a class="manga" href="<%= item.mangaLink %>"><img src="<%= item.imageLink %>" style="  width: 300px;
+                                        height: 400px;"></a>
+                                    </div>
+                                    <div class="title-in">    
+                                        <div class="cate">
+                                            <span class="blue"><a class="viewmangachapter" href="<%= item.updateLink %>" style="" tabindex="0"><%= item.update %></a></span>
+                                          </div>                                
+                                      <h6><a class="manga" href="<%= item.mangaLink %>" class="latestlink" style="font-size:16px;height:50px;display: block;font-weight: bold;text-align: left;"><%= item.mangaName %></a></h6>
+                                    </div>
+                                  </div>
+                                  <% }) %>
+                                </div>
+                              </div>
+                            </div>
+        </div>
+        <div style="background: #071829;">
+        <div class="container" >
+            <h1 style="    font-family: 'Dosis', sans-serif;
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 20px;"> Most Popular Manga</h1>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 30px;">
+                <% mostPopular.forEach(function(item){ %>
+                <div class="blog-item-style-1 blog-item-style-3" style="margin-bottom: 0px;">
+                        <div class="blog-it-infor" style="padding: 0px;">
+                          <h3><a class="manga" href="<%= item.link%>"><%= item.name%></a></h3>
+                         </div>
+                      </div>   
+                      <% }) %>           
+              </div>
+        </div>
+      </div>
+        </div>
+ 
+<% include include/footer %>

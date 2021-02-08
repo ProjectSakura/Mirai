@@ -1,0 +1,56 @@
+<% include include/header %>
+<div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1> Hot Manga</h1>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-single">
+            <div class="container">
+                    <div class="topbar-filter">
+                            <p class="pad-change"><span><%= total %></span></p>
+                        </div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                            <% latest.forEach(function(item){ %>
+                        <div class="blog-item-style-1 blog-item-style-3">
+                            <img src="<%= item.imageLink %>" alt="" style="width:240px !important;">
+                            <div class="blog-it-infor">
+                                <h3><a class="manga" href="<%= item.mangaLink %>"><%= item.title %></a></h3>
+                                <span class="time"><i class="fa fa-eye"></i> <%= item.views %> Views</span><br>
+                                <h3 > <a style="font-size: 12px;" class="viewmangachapter" href="<%= item.updateLink %>"><i class="fa fa-refresh"></i> <%= item.update %></a></h3>
+                                <p><%= item.description %></p>
+                            </div>
+                        </div>
+                       <% }) %>
+                        <ul class="pagination">
+                                <% links.forEach(function(item){ %>
+                                    <% if(item.class == 'page_select') {%>
+                                    <li class="active"><a href="#"><%= item.text %></a></li>
+                                    <% } %>
+                                    <% if(item.class == 'page_blue') {%>
+                                        <li class="icon-prev"><a class="load-hot-manga" href="<%= item.href %>"><</a></li>
+                                        <% } %>
+                                        <% if(item.class == 'page_blue page_last') {%>
+                                            <li class="icon-next"><a class="load-hot-manga" href="<%= item.href %>"><i class="ion-ios-arrow-right"></i></a></li>
+                                            <% } if(!item.class){%>   
+                                                <li><a class="load-hot-manga" href="<%= item.href %>"><%= item.text %></a></li>
+                                <%} }) %>
+                           
+                        </ul> 
+                    </div>
+                    <form id="mahi" action="hotloader" method="post">
+                        <input type="hidden" name="link" id="linker">
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+
+        <% include include/footer %>

@@ -1,0 +1,353 @@
+<% include include/header %>
+
+<div class="slider sliderv2" >
+    <div class="container"style="padding-left:40px;padding-right:40px;">
+      <div class="row">
+          <div class="slider-single-item" >
+              <% popularList.forEach(function(item){
+                var picture = item.picture.split('https://');
+                var picture2 = picture[1].split("')");
+                %>
+            <div class="movie-item">
+              <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                  <div class="title-in">
+                    <div class="cate">
+                      <% var i=0; color='blue'; item.genre.forEach(function(gen){ 
+                        if(i ==1) {
+                          color = 'yell';
+                        }
+                        if(i%2 == 0) {
+                          color = 'orange';
+                        }
+                        if(i%3 == 0) {
+                          color = 'blue';
+                        }
+                        if(i==4){
+                          color='yell';
+                        }
+                        if(i%5 == 0) {
+                          color = 'green';
+                        }
+                        %>
+                      <span class="<%= color %>"><a href="#"><%= gen %></a></span>
+                      <% i++; }) %>
+                    </div>
+                    <h1><a class="latestlink" href="<%= item.link %>"><%= item.name%></a></h1>
+                  <div class="social-btn" style="margin-top:15px;">
+                    <a href="<%= item.link%>" class="parent-btn latestlink"><i class="ion-play"></i>Start Watching Now</a>
+                  	
+                  </div>
+                    
+                        <div class="btn-transform transform-vertical" style="padding-top:15px;">
+                            <div><a href="<%= item.link%>" class="item item-1 redbtn latestlink" tabindex="0">Popular</a></div>
+                            <div><a href="<%= item.link%>" class="item item-2 redbtn hvrbtn latestlink" tabindex="0">Watch</a></div>
+                          </div>
+                  
+                    
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                  <div class="mv-img-2">
+                    <a href="#"><img src="https://<%= picture2[0] %>" alt=""></a>
+                  </div>
+                </div>
+              </div>	
+            </div>
+            <% }) %>
+          </div>
+        </div>
+    </div>
+  </div>
+
+<div class="slider movie-items">
+<div class="container">
+  <div class="row">
+      <div class="title-hd okokok" style="margin-top:30px;">
+          <h2>Latest Updates</h2>
+        </div>
+    <!-- <div class="social-link">
+      <p>Follow us: </p>
+      <a href="#"><i class="ion-social-facebook"></i></a>
+      <a href="#"><i class="ion-social-twitter"></i></a>
+      <a href="#"><i class="ion-social-googleplus"></i></a>
+      <a href="#"><i class="ion-social-youtube"></i></a>
+    </div> -->
+      <div  class="slick-multiItemSlider">
+         <% updateList.forEach(function(item){ %>
+        <div class="movie-item">
+          <div class="mv-img">
+            <a href="#"><img src="<%= item.imageLink %>" style="  width: 300px;
+              height: 400px;"></a>
+          </div>
+          <div class="title-in">
+            <div class="cate">
+              <span class="blue"><a href="#" style=""><%= item.epUpdate %></a></span>
+            </div>
+            <h6><a href="<%= item.mainLink %>" class="latestlink" style="font-size:16px;height:50px;display: block;font-weight: bold;text-align: left;"><%= item.epName %></a></h6>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+    <div class="row">
+        <div class="title-hd okokok" style="margin-top:30px;">
+            <h2>Ongoing Anime</h2>
+          </div>
+      <!-- <div class="social-link">
+        <p>Follow us: </p>
+        <a href="#"><i class="ion-social-facebook"></i></a>
+        <a href="#"><i class="ion-social-twitter"></i></a>
+        <a href="#"><i class="ion-social-googleplus"></i></a>
+        <a href="#"><i class="ion-social-youtube"></i></a>
+      </div> -->
+        <div  class="slick-multiItemSlider ongoing">
+           <% ongoingList.forEach(function(item){ %>
+          <div class="movie-item">
+            <div class="mv-img">
+              <a href="#"><img src="<%= item.imageLink %>" style="  width: 300px;
+                height: 400px;"></a>
+            </div>
+            <div class="title-in">
+                <% var i=0; color='blue'; item.genre.forEach(function(gen){ 
+                  if(i ==1) {
+                    color = 'yell';
+                  }
+                  if(i%2 == 0) {
+                    color = 'orange';
+                  }
+                  if(i%3 == 0) {
+                    color = 'blue';
+                  }
+                  if(i==4){
+                    color='yell';
+                  }
+                  if(i%5 == 0) {
+                    color = 'green';
+                  }
+                  %>
+                  <div class="cate">
+                <span class="<%= color %>" style="color:#fff;font-weight: 600; font-size: 10px;"><%= gen %></span>
+                  </div>
+                <% i++; }) %>
+              <h6><a href="<%= item.mainLink %>" class="latestlink" style="font-size:16px;height:50px;display: block;font-weight: bold;text-align: left;"><%= item.title %></a></h6>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+     
+</div>
+</div>
+
+<div class="movie-items" style="padding-top:20px;">
+<div class="container">
+  <div class="row ipad-width">
+    <div class="col-md-12">
+      <div class="title-hd oolla">
+        <h2>Latest Manga Releases</h2>
+      </div>
+      <div class="tabs oolla">
+        <ul class="tab-links">
+          <li class="active"><a href="#tab1">#MANGA</a></li>                 
+        </ul>
+          <div class="tab-content">
+              <div id="tab1" class="tab active">
+                  <div class="row">
+                    <div class="slick-multiItem">
+                      <% mangaUpdateList.forEach(function(item){ %>
+                      <div class="slide-it">
+                        <div class="movie-item">
+                          <div class="mv-img">
+                            <img src="<%= item.imageLink %>" alt="" style="width:185px;height:224px;">
+                          </div>
+                          <div class="hvr-inner">
+                            <a class="manga" href="<%= item.mangaLink %>"> Read Now <i class="ion-android-arrow-dropright"></i> </a>
+                          </div>
+                          <div class="title-in">
+                            <h6><a class="manga" href="<%= item.mangaLink %>" style="font-size:14px;font-weight: bold;text-align: left;"><%= item.mangaName %></a></h6>
+                            <p style="line-height:0px; padding-top:5px;">
+                             
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <% }) %>
+                    </div>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+      <div class="title-hd">
+        <h2>New Anime</h2>
+      </div>
+      <div class="tabs oolla">
+        <ul class="tab-links-2">
+          <li class="active"><a href="#tab21">#ARRIVAL</a></li>                 
+        </ul>
+          <div class="tab-content">
+              <div id="tab21" class="tab active ">
+                  <div class="row">
+                    <div class="slick-multiItem">
+                        <% newAnimeList.forEach(function(item){ %>
+                          <div class="slide-it">
+                            <div class="movie-item">
+                              <div class="mv-img">
+                                <img src="<%= item.imageLink %>" alt="" style="width:185px;height:224px;">
+                              </div>
+                              <div class="hvr-inner">
+                                <a  class="latestlink" href="<%= item.animeLink %>"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                              </div>
+                              <div class="title-in">
+                                <h6><a class="latestlink" href=" <%= item.animeLink %>" style="font-size:14px;font-weight: bold;text-align: left;"><%= item.animeTitle %></a></h6>
+                                <p style="line-height:0px; padding-top:5px;">
+                                    <% x = item.genre; x.forEach(function(value){ %>
+                                      <%= value %>
+                                      <% }) %>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <% }) %>
+              
+                    </div>
+                  </div>
+              </div>
+            
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--
+<div class="trailers">
+<div class="container">
+  <div class="row ipad-width">
+    <div class="col-md-12">
+      <div class="title-hd">
+        <h2>in theater</h2>
+        <a href="#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+      </div>
+      <div class="videos">
+         <div class="slider-for-2 video-ft">
+           <div>
+              <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/1Q8fG0TtVAY"></iframe>
+            </div>
+            <div>
+              <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/w0qQkSuWOS8"></iframe>
+            </div>
+            <div>
+              <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/44LdLqgOpjo"></iframe>
+            </div>
+            <div>
+              <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/gbug3zTm3Ws"></iframe>
+            </div>
+            <div>
+              <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/e3Nl_TCQXuw"></iframe>
+            </div>
+            <div>
+              <iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/NxhEZG0k9_w"></iframe>
+            </div>
+          
+          
+        </div>
+        <div class="slider-nav-2 thumb-ft">
+          <div class="item">
+            <div class="trailer-img">
+              <img src="images/uploads/trailer7.jpg"  alt="photo by Barn Images" width="4096" height="2737">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc">Wonder Woman</h4>
+                          <p>2:30</p>
+                        </div>
+          </div>
+          <div class="item">
+            <div class="trailer-img">
+              <img src="images/uploads/trailer2.jpg"  alt="photo by Barn Images" width="350" height="200">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc">Oblivion: Official Teaser Trailer</h4>
+                          <p>2:37</p>
+                        </div>
+          </div>
+          <div class="item">
+            <div class="trailer-img">
+              <img src="images/uploads/trailer6.jpg" alt="photo by Joshua Earle">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc">Exclusive Interview:  Skull Island</h4>
+                          <p>2:44</p>
+                        </div>
+          </div>
+          <div class="item">
+            <div class="trailer-img">
+              <img src="images/uploads/trailer3.png" alt="photo by Alexander Dimitrov" width="100" height="56">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc">Logan: Director James Mangold Interview</h4>	
+                          <p>2:43</p>
+                        </div>
+          </div>
+          <div class="item">
+            <div class="trailer-img">
+              <img src="images/uploads/trailer4.png"  alt="photo by Wojciech Szaturski" width="100" height="56">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc">Beauty and the Beast: Official Teaser Trailer 2</h4>	
+                          <p>2: 32</p>
+                        </div>	
+          </div>
+          <div class="item">
+            <div class="trailer-img">
+              <img src="images/uploads/trailer5.jpg"  alt="photo by Wojciech Szaturski" width="360" height="189">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc">Fast&Furious 8</h4>	
+                          <p>3:11</p>
+                        </div>	
+          </div>
+        
+        </div>
+      </div>   
+    </div>
+  </div>
+</div>
+</div>-->
+<!-- latest new v1 section -->
+<div class="latestnew">
+<div class="container">
+  <div class="row ipad-width">
+    <div class="col-md-12">
+    
+      <div class="title-hd okokok">
+        <h2>About US</h2>
+      </div>
+      <div class="tabs">
+        <!-- <ul class="tab-links-3">
+          <li class="active"><a href="#tab31">#INFO </a></li>               
+        </ul> -->
+          <div class="tab-content">
+              <div id="tab31" class="tab active">
+                  <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/pfp.jpg" alt="" style="width: 190px; height:190px;">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Project Sakura</a></h3>
+                        <span class="time">Delhi, India</span>
+                        <p>Sakura provides quick timely updates and more customizations with the same stability as Lineage OS.<i class="fa fa-thumbs-up"></i> If you'd like to donate, please follow here!</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+</div>
+<!-- end of latest new v1 section-->
+
+<% include include/footer %>

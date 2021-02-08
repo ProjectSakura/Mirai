@@ -1,0 +1,242 @@
+<% include include/header %>
+<link href="https://vjs.zencdn.net/7.5.4/video-js.css" rel="stylesheet">
+
+<script src='https://vjs.zencdn.net/7.5.4/video.js'></script>
+<style>
+  .trailers{
+  padding-top:200px;
+}
+.video-js .vjs-big-play-button {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50% ,-50%,0);
+}
+#my-video{
+  width:712px; height:401px;
+}
+@media (max-width: 1024px) {
+  #my-video {
+    width: 585px;
+    height: 401px;
+}
+  .video-js .vjs-big-play-button {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-40% ,-40%,0);
+}
+.trailers{
+  padding-top:162px;
+ 
+}
+.title-hd{ padding-left:20px;}
+}
+@media (max-width: 768px) {
+  #my-video {
+    width: 518px;
+    height: 401px;
+}
+  .item-video{
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .download-update{margin-bottom:20px;width:100%;text-align:center;}
+  .video-js .vjs-big-play-button {
+    top: 47%;
+    left: 50%;
+    transform: translate3d(-40% ,-40%,0);
+}
+.trailers{
+  padding-top:138px;
+}
+.title-hd{ padding-left:20px;}
+}
+@media (max-width: 425px) {
+  #my-video {
+    width: 365px;
+    height: 401px;
+}
+  .video-js .vjs-big-play-button {
+    top: 47%;
+    left: 47%;
+    transform: translate3d(-40% ,-40%,0);
+}
+
+}
+@media (max-width: 375px) {
+  #my-video {
+    width: 315px;
+    height: 401px;
+}
+  .video-js .vjs-big-play-button {
+    top: 50%;
+    left: 49%;
+    transform: translate3d(-40% ,-40%,0);
+}.trailers {
+    padding-top: 100px;
+}
+
+}
+</style>
+<div class="slider movie-items">
+<div class="container">
+  <div class="row">
+    <!-- <div class="social-link">
+      <p>Follow us: </p>
+      <a href="#"><i class="ion-social-facebook"></i></a>
+      <a href="#"><i class="ion-social-twitter"></i></a>
+      <a href="#"><i class="ion-social-googleplus"></i></a>
+      <a href="#"><i class="ion-social-youtube"></i></a>
+    </div> -->
+     
+    </div>
+</div>
+</div>
+
+
+<div class="trailers" >
+<div class="container">
+  <div class="row ipad-width">
+    <div class="col-md-12">
+      <div class="title-hd">
+        <h2 class="title-update"><%= detailsEpisode.name %></h2>
+      </div>
+      <div class="videos">
+         <div class="slider-for-2 video-ft">
+              <div class="container item-video">
+                    <video id='my-video' class='video-js' controls preload='auto' 
+                   data-setup='{}'>
+                      <source src='<%=  detailsEpisode.downloadLink %>' type='video/mp4'>
+                      <p class='vjs-no-js'>
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>
+                      </p>
+                    </video>
+
+                        <a href="<%=  detailsEpisode.downloadLink %>" target="_blank" class="item item-1 redbtn download-update" style="margin-top:20px;display:inline-block;padding:10px;" download> <i class="fa fa-download"></i> Download Episode</a>
+                                
+</div>
+<!-- Plyr resources and browser polyfills are specified in the pen settings -->
+        </div>
+        <div class="slider-nav-2 thumb-ft">
+          	<% episodeList.forEach(function(item){ 
+                if(item.href == url){ %>
+          <div class="item episodeDiv slick-current slick-active" link="<%= item.href %>">
+            <% } 
+            else{ %>
+              <div class="item episodeDiv" link="<%= item.href %>">
+                  <% } %>
+            <div class="trailer-img">
+              <img src="images/uploads/play-vd.png" style="width:40px">
+            </div>
+            <div class="trailer-infor">
+                          <h4 class="desc"><%= item.episode %></h4>
+                          <p>Click to play</p>
+                        </div>
+          </div>
+          <% }) %>
+         </div>
+      </div>   
+    </div>
+  </div>
+</div>
+</div>
+<!-- latest new v1 section -->
+<div class="latestnew" style="padding-top: 20px">
+<div class="container">
+  <div class="row ipad-width">
+    <div class="col-md-12">
+    
+      <div class="title-hd">
+        <h2>About US</h2>
+      </div>
+      <div class="tabs">
+        <ul class="tab-links-3">
+          <li class="active"><a href="#tab31">#INFO </a></li>             
+        </ul>
+          <div class="tab-content">
+              <div id="tab31" class="tab active">
+                  <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/pfp.jpg" alt="" style="width: 190px; height:190px;">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Project Sakura</a></h3>
+                        <span class="time">Delhi, India</span>
+                        <p>Sakura provides quick timely updates and more customizations with the same stability as Lineage OS.<i class="fa fa-thumbs-up"></i> If you'd like to donate, please follow here!</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab32" class="tab">
+                 <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/uploads/blog-it2.jpg" alt="" width="170" height="250">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Tab 2</a></h3>
+                        <span class="time">13 hours ago</span>
+                        <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab33" class="tab">
+                <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/uploads/blog-it1.jpg" alt="" width="170" height="250">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Tab 3</a></h3>
+                        <span class="time">13 hours ago</span>
+                        <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+</div>
+<script src="javascripts/jquery.js"></script>
+<!-- end of latest new v1 section-->
+<script>
+  $( document ).ready(function() {
+//     var player = videojs('my-video', {
+//   userActions: {
+//     hotkeys: {
+//       muteKey: function(event) {
+//         // disable mute key
+//         return (event.which === 77);
+//       },
+//       fullscreenKey: function(event) {
+//         // override fullscreen to trigger when pressing the v key
+//         return (event.which === 70);
+//       }
+//     }
+//   }
+// });
+$('.episodeDiv').click(function(e) {
+		var link = $(this).attr('link');
+		e.preventDefault();
+    $.ajax({
+                    type: "POST",
+                    url: 'loadvideo/getVideoUrl',
+                    data: {link : link},
+                    success: function(data)
+                    {   
+                        var OBJ = JSON.parse(data);
+                        $('.title-update').text(OBJ.name);
+                        $('.download-update').attr('href',OBJ.downloadLink);
+                        var player = videojs('my-video');
+                        player.pause();
+                        player.src([{type: "video/mp4", src: OBJ.downloadLink}]);
+                        player.load();
+                        player.play();
+                    }
+                    });
+
+	});
+});
+
+</script>
+<% include include/footer %>

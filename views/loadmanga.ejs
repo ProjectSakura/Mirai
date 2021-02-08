@@ -1,0 +1,102 @@
+<% include include/header %>
+<style>
+@media(max-width : 768px){
+    .mv-ceb img{
+        width: 100% !important;
+    }
+    .cebleb-single{
+        
+    }
+}
+</style>
+<div class="hero hero3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <h1> movie listing - list</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- celebrity single section-->
+    
+<div class="page-single movie-single cebleb-single">
+        <div class="container">
+            <div class="row ipad-width">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="mv-ceb">
+                        <img src="<%= mangaDetails.image %>" alt="">
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="movie-single-ct">
+                        <h1 class="bd-hd"><%= mangaDetails.name %></h1>
+                        <div class="social-btn">
+                                <a href="#" class="parent-btn" id="startreading"><i class="ion-play"></i> Start Reading</a>                            
+                            </div>
+                        <div class="movie-tabs">
+                            <div class="tabs">
+                                <ul class="tab-links tabs-mv">
+                                    <li class="active"><a href="#overviewceb">Overview</a></li>
+                                    <li><a href="#chapters"> Chapters</a></li>                  
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="overviewceb" class="tab active">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                                <p><%= mangaDetails.summary %></p>
+                                             
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                   
+                                        <div id="chapters" class="tab">
+                                        <div class="row">
+                                            <div class="rv-hd">
+                                                <div>
+                                                    <h3>All Chapters</h3>
+                                                </div>
+                                            
+                                            </div>
+                                            <!-- movie cast -->
+                                            <div class="mvcast-item">											
+                                                <% var lasturl = ''; var y = 0; chapterList.forEach(function(item){%>
+                                                <div class="cast-it">
+                                                    <div class="cast-left cebleb-film">
+                                                    
+                                                        <div>
+                                                            <a class="viewmangachapter" href="<%= item.href %>"><%= item.title %> </a>
+                                                            <p class="time"><%= item.views %> views</p>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <p><%= item.release %></p>
+                                                </div>
+                                                <% if(y == 0) { lasturl = item.href; }  y++;})%>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+<script src="javascripts/jquery.js"></script>
+    <script>
+    $('#startreading').click(function (e) {
+	e.preventDefault();
+	location.href='viewmanga?url=<%= lasturl %>';
+});
+    </script>
+    <!-- celebrity single section-->
+    <% include include/footer %>

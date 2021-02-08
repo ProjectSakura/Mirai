@@ -1,0 +1,136 @@
+<!-- footer section-->
+<footer class="ht-footer">
+	<div class="container">
+		
+	</div>
+	<div class="ft-copyright">
+		<div class="ft-left">
+			<p>© 2021 Nekkoto. All Rights Reserved. Designed by Project Sakura.</p>
+		</div>
+		<div class="backtotop">
+			<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
+		</div>
+	</div>
+</footer>
+<!-- end of footer section-->
+<script src="javascripts/jquery.js"></script>
+<script src="javascripts/plugins.js"></script>
+<script src="javascripts/plugins2.js"></script>
+<script src="javascripts/custom.js"></script>
+<script>
+	$('.latestlink').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		location.href = 'loadpage?url='+link;
+	});
+	$('.load-hot-manga').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		$('#linker').val(link);
+		$('#mahi').submit();
+	});
+	$('.load-new-manga').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		$('#linker').val(link);
+		$('#mahi').submit();
+	});
+	$('.load-manga').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		$('#linker').val(link);
+		$('#mahi').submit();
+	});
+	$('.manga').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		location.href = 'loadmanga?url='+link;
+	});
+	$('.viewmangachapter').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		location.href = 'viewmanga?url='+link;
+	});
+	$('.fetchVedio').click(function(e) {
+		var link = $(this).attr('href');
+		e.preventDefault();
+		location.href = 'loadvideo?url='+link;
+	});
+	$('.animelist').click(function(e) {
+		var link = $(this).attr('link');
+		e.preventDefault();
+		location.href = 'animelist?url='+link;
+	});
+	$('#selector-val').change(function () {
+		if($(this).val() == 'anime')
+		{
+			$('#searchInput').attr('placeholder','Search for an Anime, that you would like to search');
+		}
+		else{
+			$('#searchInput').attr('placeholder','Search for a Manga, that you would like to search');
+			}
+	});
+	$('#searchInput').keyup(function(e) {
+		var input = $(this).val();
+		var selected = $('#selector-val').val();
+		var url = '';
+		if(selected == 'anime'){
+			url = 'search';
+			if(input != ''){
+			var string = '';
+		e.preventDefault();
+		$.ajax({
+                    type: "GET",
+                    url: url,
+                    data: {
+						q : input
+					},
+                    success: function(data)
+                    {   $('#search_result ul').html('');
+                        var OBJ = JSON.parse(data);
+						$('#search_result').show();
+						$.each(OBJ.data,function(i,val){
+							string=string + '<li><a class="latestlink" style="color:#fff;font-family: \'Dosis\', sans-serif;font-weight: bold;text-transform: uppercase;cursor: pointer;" href="loadpage?url=https://www.gogoanime1.com/watch/'+val.seo_name+'">'+val.name+'</a></li>';
+						});
+						$('#search_result ul').append(string);
+                    }
+                    });
+		}
+		else{
+			$('#search_result').hide();
+		}
+		}
+		else{
+			url = 'search/mangasearch';
+			if(input != ''){
+			var string = '';
+		e.preventDefault();
+		$.ajax({
+                    type: "GET",
+                    url: url,
+                    data: {
+						q : input
+					},
+                    success: function(data)
+                    {   $('#search_result ul').html('');
+                        var OBJ = JSON.parse(data);
+						$('#search_result').show();
+						$.each(OBJ,function(i,val){
+							string=string + '<li ><img src="'+val.image+'" style="position:relative;top:5px;width:40px;height:56px;margin-right:10px;display:inline-block;"><div style="display:inline;"><a class="manga" style="position: relative;top: -15px;color:#fff;font-family: \'Dosis\', sans-serif;font-weight: bold;text-transform: uppercase;cursor: pointer;" href="loadmanga?url=https://mangakakalot.com/manga/'+val.nameunsigned+'">'+val.nameunsigned+'</a><br><span style="position: relative;left: 50px;    top: -12px;">Latest : '+val.lastchapter+'</span><br><span style="position: relative;left: 50px;top: -56px;"><i>Author : '+val.author+'</i></span><div></li>';                                         
+						});
+						$('#search_result ul').append(string);
+                    }
+                    });
+		}
+		else{
+			$('#search_result').hide();
+		}
+		}
+		
+		
+	});
+	</script>
+</body>
+
+<!-- Mirrored from haintheme.com/demo/html/bustter/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Jun 2019 15:15:04 GMT -->
+</html>

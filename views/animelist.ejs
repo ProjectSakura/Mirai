@@ -1,0 +1,103 @@
+<% include include/header %>
+<div class="hero common-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="hero-ct">
+                        <h1>Anime List</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-single">
+            <div class="container">
+                <div class="row ipad-width2">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                        <div class="topbar-filter">
+                            <p class="pad-change">Found <span><%= series.length %> categories</span> in total</p>
+                            <label>Sorted by: Alphabetical Order</label>
+                        </div>
+                        <div class="row">
+                                <% series.forEach(function(item){ %>
+                                    <% item.links.forEach(function(x){ %>
+                            <div class="col-md-12">
+                                <div class="ceb-item-style-2">
+                                    <div class="ceb-infor">
+                                        <h2><a class="latestlink" href="<%= x.href%>"><%= x.text%></a></h2>
+                                     </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                            <% }) %>
+                        </div>
+                      
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+<div class="latestnew">
+<div class="container">
+  <div class="row ipad-width">
+    <div class="col-md-12">
+    
+      <div class="title-hd">
+        <h2>About US</h2>
+      </div>
+      <div class="tabs">
+        <ul class="tab-links-3">
+          <li class="active"><a href="#tab31">#Movies </a></li>
+          <li><a href="#tab32"> #TV Shows </a></li>              
+          <li><a href="#tab33">  # Celebs</a></li>                       
+        </ul>
+          <div class="tab-content">
+              <div id="tab31" class="tab active">
+                  <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/pfp.jpg" alt="" style="width: 190px; height:190px;">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Project Sakura</a></h3>
+                        <span class="time">Delhi, India</span>
+                        <p>Sakura provides quick timely updates and more customizations with the same stability as Lineage OS.<i class="fa fa-thumbs-up"></i> If you'd like to donate, please follow here!</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab32" class="tab">
+                 <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/uploads/blog-it2.jpg" alt="" width="170" height="250">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Tab 2</a></h3>
+                        <span class="time">13 hours ago</span>
+                        <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div id="tab33" class="tab">
+                <div class="row">
+                    <div class="blog-item-style-1">
+                      <img src="images/uploads/blog-it1.jpg" alt="" width="170" height="250">
+                      <div class="blog-it-infor">
+                        <h3><a href="#">Tab 3</a></h3>
+                        <span class="time">13 hours ago</span>
+                        <p>Exclusive: <span>Amazon Studios </span>has acquired Victoria Woodhull, with Oscar winning Room star <span>Brie Larson</span> polsed to produce, and play the first female candidate for the presidency of the United States. Amazon bought it in a pitch package deal. <span> Ben Kopit</span>, who wrote the Warner Bros film <span>Libertine</span> that has...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+   
+    </div>
+  </div>
+</div>
+</div>
+<!-- end of latest new v1 section-->
+
+<% include include/footer %>
