@@ -3,7 +3,9 @@ const cheerio = require("cheerio");
 
 class MangaPark {
   getImageList(url) {
+    console.log(url);
     url = url.substring(0, url.lastIndexOf("/"));
+    console.log(url);
     return new Promise((resolve, reject) => {
       http.get(url, (resp) => {
         let html = "";
@@ -21,7 +23,8 @@ class MangaPark {
             for (let i of arr) {
               img.push(i.u);
             }
-            resolve({ imageList: img });
+            console.log(img);
+            resolve({ images: img });
           } catch (error) {
             console.log(error);
           }
