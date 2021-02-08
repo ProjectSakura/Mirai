@@ -51,7 +51,7 @@ router.get("/", function (req, res, next) {
             .last()
             .attr("href");
           res.render("playepisode", {
-            title: "Nekkoto",
+            title: "Mirai",
             navList: navList,
             detailsEpisode: detailsEpisode,
             seriesUrl: seriesUrl,

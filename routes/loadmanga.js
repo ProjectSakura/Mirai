@@ -25,7 +25,7 @@ router.get("/", function (req, res, next) {
       });
       chapterList = chapterList.reverse();
       res.render("loadmanga", {
-        title: "Nekkoto",
+        title: "Mirai",
         mangaDetails: mangaDetails,
         chapterList: chapterList,
       });

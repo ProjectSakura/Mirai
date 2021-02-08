@@ -35,7 +35,7 @@ router.get("/", function (req, res, next) {
         });
 
         res.render("hotmanga", {
-          title: "Nekkoto",
+          title: "Mirai",
           latest: latestk,
           total: total,
           links: linksk,

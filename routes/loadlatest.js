@@ -34,7 +34,7 @@ router.get("/", function (req, res, next) {
           links.push(link);
         });
         res.render("latest", {
-          title: "Nekkoto",
+          title: "Mirai",
           latest: latest,
           total: total,
           links: links,

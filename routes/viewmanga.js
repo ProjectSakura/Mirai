@@ -45,7 +45,7 @@ router.get("/", async function (req, res, next) {
         return "data:image/png;base64," + Base64.encode(elem.value);
       });
       res.render("viewmanga", {
-        title: "Nekkoto",
+        title: "Mirai",
         images: values,
         details: details,
       });

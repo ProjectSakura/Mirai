@@ -50,7 +50,7 @@ router.get("/", function (req, res, next) {
       });
 
       res.render("loadepisode", {
-        title: "Nekkoto",
+        title: "Mirai",
         navList: navList,
         episodeList: episodeList,
         seriesDetails: seriesDetails,

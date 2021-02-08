@@ -1,60 +1,66 @@
 <% include include/header %>
 <style>
-@media (max-width: 768px){
-.movie-single .sticky-sb {
-	max-width: 180px;
-    /* margin: 0 auto 60px; */
-    position: absolute;
-    top: 25px;
-    right: 0px;
-}
-}
-@media (max-width: 425px){
-.movie-single .sticky-sb {
-	max-width: 160px;
-    /* margin: 0 auto 60px; */
-    position: absolute;
-    top: -175px;
-    right: 104px;
-}
-}
-@media (max-width: 375px){
-.movie-single .sticky-sb {
-	max-width: 160px;
-    /* margin: 0 auto 60px; */
-    position: absolute;
-    top: -175px;
-    right: 79px;
-}
-}
+  @media (max-width: 768px) {
+    .movie-single .sticky-sb {
+      max-width: 180px;
+      /* margin: 0 auto 60px; */
+      position: absolute;
+      top: 25px;
+      right: 0px;
+    }
+  }
+  @media (max-width: 425px) {
+    .movie-single .sticky-sb {
+      max-width: 160px;
+      /* margin: 0 auto 60px; */
+      position: absolute;
+      top: -175px;
+      right: 104px;
+    }
+  }
+  @media (max-width: 375px) {
+    .movie-single .sticky-sb {
+      max-width: 160px;
+      /* margin: 0 auto 60px; */
+      position: absolute;
+      top: -175px;
+      right: 79px;
+    }
+  }
 </style>
 <div class="hero mv-single-hero">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<!-- <h1> movie listing - list</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- <h1> movie listing - list</h1>
 				<ul class="breadcumb">
 					<li class="active"><a href="#">Home</a></li>
 					<li> <span class="ion-ios-arrow-right"></span> movie listing</li>
 				</ul> -->
-			</div>
-		</div>
-	</div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="page-single movie-single movie_single">
-	<div class="container">
-		<div class="row ipad-width2">
-			<div class="col-md-4 col-sm-12 col-xs-12">
-				<div class="movie-img sticky-sb">
-					<img src="<%= seriesDetails.image %>" alt="">
-				</div>
-			</div>
-			<div class="col-md-8 col-sm-12 col-xs-12">
-				<div class="movie-single-ct main-content">
-					<h1 class="bd-hd"><%= seriesDetails.name %><br><span><%= seriesDetails.started%></span></h1>
-					 <div class="social-btn">
-						<a href="#" class="parent-btn" id="startwatching"><i class="ion-play"></i> Start Watching</a>
-						<!-- <div class="hover-bnt">
+  <div class="container">
+    <div class="row ipad-width2">
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="movie-img sticky-sb">
+          <img src="<%= seriesDetails.image %>" alt="" />
+        </div>
+      </div>
+      <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="movie-single-ct main-content">
+          <h1 class="bd-hd">
+            <%= seriesDetails.name %><br /><span
+              ><%= seriesDetails.started%></span
+            >
+          </h1>
+          <div class="social-btn">
+            <a href="#" class="parent-btn" id="startwatching"
+              ><i class="ion-play"></i> Start Watching</a
+            >
+            <!-- <div class="hover-bnt">
 							<a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
 							<div class="hvr-item">
 								<a href="#" class="hvr-grow"><i class="ion-social-facebook"></i></a>
@@ -63,8 +69,8 @@
 								<a href="#" class="hvr-grow"><i class="ion-social-youtube"></i></a>
 							</div>
 						</div>		 -->
-					</div> 
-					<!-- <div class="movie-rate">
+          </div>
+          <!-- <div class="movie-rate">
 						<div class="rate">
 							<i class="ion-android-star"></i>
 							<p><span>8.1</span> /10<br>
@@ -83,81 +89,84 @@
 							<i class="ion-ios-star-outline"></i>
 						</div>
 					</div> -->
-					<div class="movie-tabs">
-						<div class="tabs">
-							<ul class="tab-links tabs-mv">
-								<li class="active"><a href="#overview">Overview</a></li>
-								<li><a href="#cast">  Episodes </a></li>   
-								<li><a href="#details">  Details </a></li>                    
-							</ul>
-						    <div class="tab-content">
-						        <div id="overview" class="tab active">
-						            <div class="row">
-						            	<div class="col-md-8 col-sm-12 col-xs-12">
-						            		<p><%= seriesDetails.details %></p>
-						            		<%= seriesDetails.detailHtml %>
-						            	</div>
-						            </div>
-						        </div>
-						     
-						        <div id="cast" class="tab">
-						        	<div class="row">
-					       	 			<h2>Episode List</h2>
-										<!-- //== -->
-					       	 			<div class="title-hd-sm">
-											<h4>Latest Updates</h4>
-										</div>
-										<div class="mvcast-item">	
-                                                <% var i=0; var lastep = '' ;episodeList.forEach(function(item){
-													i++; 
-													lastep = item.href; %>										
-											<div class="cast-it">
-												<div class="cast-left">
-													<a class="fetchVedio" href="<%= item.href %>"><%= item.episode %></a>
-												</div>
-                                            </div>
-                                            <% if(i==5)   { %> 
-                                                <div class="title-hd-sm">
-                                                        <h4>All Episodes</h4>
-                                                    </div>
-                                            <% } %>
-                                        
-                                        <% }) %>
-										</div>
-									
-										
-										
-						            </div>
-									</div>
-									<div id="details" class="tab ">
-											<div class="row">
-												<div class="Nekkoto">
-														<div class="mvcast-item">	
-														<% detailer.forEach(function(item){ %>										
-													<div class="cast-it">
-														<div class="cast-left">
-															<a class="fetchVedio" href="#"><span style="color:#dcf836;"><%= item.name %></span><span style="color: #dd003f;"><% var x = item.value.split(':'); %><%= x['1']; %></span></a>
-														</div>
-													</div>
-												<% }) %>
-												</div>
-											</div>
-											</div>
-										</div>
-					       	 
-						    </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+          <div class="movie-tabs">
+            <div class="tabs">
+              <ul class="tab-links tabs-mv">
+                <li class="active"><a href="#overview">Overview</a></li>
+                <li><a href="#cast"> Episodes </a></li>
+                <li><a href="#details"> Details </a></li>
+              </ul>
+              <div class="tab-content">
+                <div id="overview" class="tab active">
+                  <div class="row">
+                    <div class="col-md-8 col-sm-12 col-xs-12">
+                      <p><%= seriesDetails.details %></p>
+                      <%= seriesDetails.detailHtml %>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="cast" class="tab">
+                  <div class="row">
+                    <h2>Episode List</h2>
+                    <!-- //== -->
+                    <div class="title-hd-sm">
+                      <h4>Latest Updates</h4>
+                    </div>
+                    <div class="mvcast-item">
+                      <% var i=0; var lastep = ''
+                      ;episodeList.forEach(function(item){ i++; lastep =
+                      item.href; %>
+                      <div class="cast-it">
+                        <div class="cast-left">
+                          <a class="fetchVedio" href="<%= item.href %>"
+                            ><%= item.episode %></a
+                          >
+                        </div>
+                      </div>
+                      <% if(i==5) { %>
+                      <div class="title-hd-sm">
+                        <h4>All Episodes</h4>
+                      </div>
+                      <% } %> <% }) %>
+                    </div>
+                  </div>
+                </div>
+                <div id="details" class="tab">
+                  <div class="row">
+                    <div class="Mirai">
+                      <div class="mvcast-item">
+                        <% detailer.forEach(function(item){ %>
+                        <div class="cast-it">
+                          <div class="cast-left">
+                            <a class="fetchVedio" href="#"
+                              ><span style="color: #dcf836"
+                                ><%= item.name %></span
+                              ><span style="color: #dd003f"
+                                ><% var x = item.value.split(':'); %><%= x['1'];
+                                %></span
+                              ></a
+                            >
+                          </div>
+                        </div>
+                        <% }) %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="javascripts/jquery.js"></script>
 <script>
-$('#startwatching').click(function (e) {
-	e.preventDefault();
-	location.href='loadvideo?url=<%= lastep%>';
-});
+  $("#startwatching").click(function (e) {
+    e.preventDefault();
+    location.href = "loadvideo?url=<%= lastep%>";
+  });
 </script>
 <% include include/footer %>

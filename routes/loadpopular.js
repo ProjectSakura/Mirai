@@ -31,7 +31,7 @@ router.get("/", function (req, res, next) {
         mostPopular.push(xitem);
       });
       res.render("popular", {
-        title: "Nekkoto",
+        title: "Mirai",
         spotlight: spotlight,
         mostPopular: mostPopular,
       });
