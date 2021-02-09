@@ -1,7 +1,8 @@
 var express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
-
+const mangaPark = require("./mangaPark");
+const mangaParkObj = new mangaPark();
 var router = express.Router();
 
 router.get("/", function (req, res, next) {
