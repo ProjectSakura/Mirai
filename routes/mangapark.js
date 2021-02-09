@@ -145,9 +145,9 @@ class MangaPark {
                     .attr("data-cfsrc");
                   tempObj = {
                     description: "",
-                    title: title,
-                    link: link,
-                    thumb: imageLink,
+                    mangaName: title,
+                    mangaLink: link,
+                    imageLink: imageLink,
                   };
 
                   mangaArr.push(tempObj);
