@@ -374,10 +374,11 @@ class MangaPark {
                 chapDate = chapDate.trim();
 
                 chapObj = {
-                  chapterTitle: $(el).children("a").text(),
-                  chapterLink:
+                  title: $(el).children("a").text(),
+                  href:
                     "https://mangapark.net" + $(el).children("a").attr("href"),
-                  chapDate: chapDate,
+                  release: chapDate,
+                  views: "",
                 };
                 chapterList.push(chapObj);
               });

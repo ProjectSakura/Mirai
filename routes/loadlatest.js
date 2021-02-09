@@ -33,6 +33,9 @@ router.get("/", function (req, res, next) {
           link.class = $(elx).attr("class");
           links.push(link);
         });
+        console.log(links);
+        console.log(latest);
+        console.log(total);
         res.render("latest", {
           title: "Mirai",
           latest: latest,
