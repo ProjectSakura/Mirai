@@ -1,11 +1,19 @@
 const http = require("https");
 const cheerio = require("cheerio");
 
+// getImageList;
+// getMangaList;
+// search;
+// getLatestChapter;
+// getMangaInfo;
+// getGenre;
+// getGenreManga;
+
 class MangaPark {
   getImageList(url) {
-    console.log(url);
+    // console.log(url);
     url = url.substring(0, url.lastIndexOf("/"));
-    console.log(url);
+    // console.log(url);
     return new Promise((resolve, reject) => {
       http.get(url, (resp) => {
         let html = "";
@@ -23,7 +31,7 @@ class MangaPark {
             for (let i of arr) {
               img.push(i.u);
             }
-            console.log(img);
+            // console.log(img);
             resolve({ images: img });
           } catch (error) {
             console.log(error);
@@ -32,6 +40,52 @@ class MangaPark {
 
         resp.on("error", () => {
           console.log(error);
+        });
+      });
+    });
+  }
+  getChapterInfo(url) {
+    // console.log(url);
+    url = url.substring(0, url.lastIndexOf("/"));
+    // console.log(url);
+    return new Promise((resolve, reject) => {
+      http.get(url, (resp) => {
+        let html = "";
+
+        resp.on("data", (chunk) => {
+          html += chunk;
+        });
+
+        resp.on("end", () => {
+          try {
+            const $ = cheerio.load(html);
+            let prev = $(".board")
+              .children(".info")
+              .children("div")
+              .children("p")
+              .eq(0)
+              .children("a")
+              .attr("href");
+            let next = $(".board")
+              .children(".info")
+              .children("div")
+              .children("p")
+              .eq(1)
+              .children("a")
+              .attr("href");
+            prev = "https://mangapark.net" + prev;
+            next = "https://mangapark.net" + next;
+            const title = $(".page")
+              .children(".content")
+              .children("h2")
+              .text()
+              .replace("Webtoon", "")
+              .trim();
+            console.log(title);
+            resolve({ name: title, next: next, back: prev });
+          } catch (e) {
+            console.log(e);
+          }
         });
       });
     });
@@ -115,7 +169,7 @@ class MangaPark {
     return new Promise((resolve, reject) => {
       let url =
         "https://mangapark.net/search?orderby=views_a&q=" + encodeURI(title);
-      console.log(url);
+      //   console.log(url);
       http.get(url, (resp) => {
         let html = "";
 
@@ -185,7 +239,7 @@ class MangaPark {
           } catch (e) {
             console.log(e);
           } finally {
-            console.log(finalArray);
+            // console.log(finalArray);
             resolve(finalArray);
           }
         });
