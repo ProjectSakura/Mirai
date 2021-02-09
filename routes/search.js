@@ -18,22 +18,7 @@ router.get("/", function (req, res, next) {
 
 router.get("/mangasearch", async function (req, res, next) {
   let manga = await mangaParkObj.search(10, req.query.q, []);
-  console.log(manga);
-  // request.post(
-  //   {
-  //     url: "https://mangakakalot.com/home_json_search",
-  //     formData: { searchword: req.query.q },
-  //   },
-  //   function (err, httpResponse, body) {
-  //     if (err) {
-  //       return console.error("upload failed:", err);
-  //     }
-  //     // console.log(body);
-  //     res.send(body);
-  //   }
-  // );
   res.send(manga);
-  
 });
 
 module.exports = router;

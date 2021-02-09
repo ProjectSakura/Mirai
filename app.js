@@ -16,8 +16,6 @@ var loadLatest = require('./routes/loadlatest');
 var loaderRoute = require('./routes/loader');
 var hotmangaRoute = require('./routes/hotmanga');
 var hotmangaloaderRoute = require('./routes/hotloader');
-var newmangaRoute = require('./routes/newmanga');
-var newmangaloaderRoute = require('./routes/newloader');
 var testRoute = require('./routes/test');
 var app = express();
 
@@ -43,8 +41,6 @@ app.use('/loadlatest', loadLatest);
 app.use('/loader', loaderRoute);
 app.use('/hotmanga', hotmangaRoute);
 app.use('/hotloader', hotmangaloaderRoute);
-app.use('/newmanga', newmangaRoute);
-app.use('/newloader', newmangaloaderRoute);
 // app.use('/test', testRoute);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
