@@ -6,7 +6,6 @@ const mangaParkObj = new mangaPark();
 
 var router = express.Router();
 
-/* GET home page. */
 router.get("/", function (req, res, next) {
   request(
     "https://www.gogoanime1.com/search/topSearch?q=" + req.query.q,

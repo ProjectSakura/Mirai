@@ -1,20 +1,19 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var loadRouter = require("./routes/loadpage");
-var videoRouter = require("./routes/loadvideo");
-var animeList = require("./routes/animelist");
-var searchRoute = require("./routes/search");
-var loadManga = require("./routes/loadmanga");
-var loadChapter = require("./routes/viewmanga");
-var loadLatest = require("./routes/loadlatest");
-var loaderRoute = require("./routes/loader");
-var testRoute = require("./routes/test");
-var app = express();
+const indexRouter = require("./routes/index");
+const loadRouter = require("./routes/loadpage");
+const videoRouter = require("./routes/loadvideo");
+const animeList = require("./routes/animelist");
+const searchRoute = require("./routes/search");
+const loadManga = require("./routes/loadmanga");
+const loadChapter = require("./routes/viewmanga");
+const loadLatest = require("./routes/loadlatest");
+const loaderRoute = require("./routes/loader");
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -35,8 +34,7 @@ app.use("/loadmanga", loadManga);
 app.use("/viewmanga", loadChapter);
 app.use("/loadlatest", loadLatest);
 app.use("/loader", loaderRoute);
-// app.use('/test', testRoute);
-// catch 404 and forward to error handler
+
 app.use(function (req, res, next) {
   next(createError(404));
 });

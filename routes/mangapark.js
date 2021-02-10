@@ -264,7 +264,7 @@ class MangaPark {
 
             maxStreams = $(".stream").length;
 
-            for (var i = 0; i < maxStreams; i++) {
+            for (let i = 0; i < maxStreams; i++) {
               streamLen.push(
                 $(".stream")
                   .eq(i)
@@ -342,7 +342,7 @@ class MangaPark {
 
             maxStreams = $(".stream").length;
 
-            for (var i = 0; i < maxStreams; i++) {
+            for (let i = 0; i < maxStreams; i++) {
               streamLen.push(
                 $(".stream")
                   .eq(i)

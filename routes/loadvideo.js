@@ -1,9 +1,9 @@
-var express = require("express");
+const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
 
-var router = express.Router();
-var navList = [];
+const router = express.Router();
+let navList = [];
 
 // Fetch Gogoanime latest header links
 request("https://www.gogoanime1.com", (error, response, html) => {
@@ -11,7 +11,7 @@ request("https://www.gogoanime1.com", (error, response, html) => {
     const $ = cheerio.load(html);
 
     $(".main-menu li").each((i, el) => {
-      var link = {};
+      let link = {};
       link.href = $(el).find("a").attr("href");
       link.text = $(el).find("a").text();
       navList.push(link);
@@ -22,19 +22,19 @@ request("https://www.gogoanime1.com", (error, response, html) => {
 });
 
 router.get("/", function (req, res, next) {
-  var url = req.query.url;
+  let url = req.query.url;
   //generate series URL by exploding
-  var split = url.split("/");
-  var seriesUrl = split[0] + "//" + split[2] + "/" + split[3] + "/" + split[4];
+  let split = url.split("/");
+  let seriesUrl = split[0] + "//" + split[2] + "/" + split[3] + "/" + split[4];
   //request Episode List
-  var episodeList = [];
+  let episodeList = [];
   request(seriesUrl, (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
       //Get episodes list and links
-      var episodeDiv = $(".ci-contents").last(".check-list");
+      let episodeDiv = $(".ci-contents").last(".check-list");
       episodeDiv.find("li").each((i, el) => {
-        var link = {};
+        let link = {};
         link.href = $(el).find("a").attr("href");
         link.episode = $(el).find("a").text();
         episodeList.push(link);
@@ -44,7 +44,7 @@ router.get("/", function (req, res, next) {
       request(url, (error, response, html) => {
         if (!error && response.statusCode == 200) {
           const $ = cheerio.load(html);
-          var detailsEpisode = {};
+          let detailsEpisode = {};
           detailsEpisode.name = $(".vmn-title").find("h1").text();
           detailsEpisode.downloadLink = $(".vmn-buttons")
             .children()
@@ -73,7 +73,7 @@ router.post("/getVideoUrl", function (req, res) {
   request(req.body.link, (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
-      var detailsEpisode = {};
+      let detailsEpisode = {};
       detailsEpisode.name = $(".vmn-title").find("h1").text();
       detailsEpisode.downloadLink = $(".vmn-buttons")
         .children()

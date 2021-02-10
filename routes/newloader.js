@@ -1,17 +1,17 @@
-var express = require("express");
+const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
 
-var router = express.Router();
+const router = express.Router();
 
 router.post("/", function (req, res, next) {
-  var latestk = [];
-  var url = req.body.link;
+  let latestk = [];
+  let url = req.body.link;
   request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
       $(".truyen-list .list-truyen-item-wrap").each((j, eld) => {
-        var item = {};
+        let item = {};
         item.mangaLink = $(eld).children().first("a").attr("href");
         item.imageLink = $(eld).find("img").attr("src");
         item.views = $(eld).find(".aye_icon").text();
@@ -23,10 +23,10 @@ router.post("/", function (req, res, next) {
           .attr("href");
         latestk.push(item);
       });
-      var total = $(".panel_page_number .group_qty").find("a").text();
-      var linksk = [];
+      let total = $(".panel_page_number .group_qty").find("a").text();
+      let linksk = [];
       $(".panel_page_number .group_page a").each((y, elx) => {
-        var link = {};
+        let link = {};
         link.text = $(elx).text();
         link.href = $(elx).attr("href");
         link.class = $(elx).attr("class");

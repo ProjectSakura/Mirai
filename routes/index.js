@@ -100,6 +100,9 @@ router.get("/", async function (req, res, next) {
           $(el)
             .find(".blb-links a")
             .each((j, elj) => {
+              // if (j == 20) {
+              //   break;
+              // }
               genre.push($(elj).text());
             });
           ongoing.genre = genre;
@@ -115,7 +118,7 @@ router.get("/", async function (req, res, next) {
   // Fetch Gogoanime latest manga links
   // getMangaList
   mangass = await mangaParkObj.getMangaList(1);
-
+  console.log(ongoingList);
   res.render("index", {
     title: "Mirai",
     navList: navList,

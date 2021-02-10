@@ -1,24 +1,23 @@
-var express = require("express");
+const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
 
-var router = express.Router();
+const router = express.Router();
 
 router.get("/", function (req, res, next) {
-  var url = req.query.url;
-  var series = [];
-  // Fetch Gogoanime anime list links
+  const url = req.query.url;
+  let series = [];
   request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
 
       $(".container-left .container-item").each((i, el) => {
-        var index = $(el).find(".ci-title").text();
-        var linkstoindex = $(el).find("li");
+        let index = $(el).find(".ci-title").text();
+        let linkstoindex = $(el).find("li");
 
-        var links = [];
+        let links = [];
         linkstoindex.each((j, elx) => {
-          var info = {};
+          let info = {};
           info.href = $(elx).find("a").attr("href");
           info.text = $(elx).find("a").text();
           links.push(info);

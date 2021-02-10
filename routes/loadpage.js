@@ -1,10 +1,10 @@
-var express = require("express");
+const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
 
-var router = express.Router();
-var seriesDetails = {};
-var navList = [];
+const router = express.Router();
+let seriesDetails = {};
+let navList = [];
 
 // Fetch Gogoanime latest header links
 request("https://www.gogoanime1.com", (error, response, html) => {
@@ -12,7 +12,7 @@ request("https://www.gogoanime1.com", (error, response, html) => {
     const $ = cheerio.load(html);
 
     $(".main-menu li").each((i, el) => {
-      var link = {};
+      let link = {};
       link.href = $(el).find("a").attr("href");
       link.text = $(el).find("a").text();
       navList.push(link);
@@ -23,9 +23,9 @@ request("https://www.gogoanime1.com", (error, response, html) => {
 });
 
 router.get("/", function (req, res, next) {
-  var url = req.query.url;
-  var episodeList = [];
-  var detailer = [];
+  let url = req.query.url;
+  let episodeList = [];
+  let detailer = [];
   request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
@@ -35,15 +35,15 @@ router.get("/", function (req, res, next) {
       seriesDetails.image = $(".animeDetail-image").find("img").attr("src");
       seriesDetails.started = $(".animeDetail-tags").children().last().text();
       $(".animeDetail-tags .animeDetail-item").each((i, el) => {
-        var detailsx = {};
+        let detailsx = {};
         detailsx.name = $(el).find("span").text();
         detailsx.value = $(el).text();
         detailer.push(detailsx);
       });
       //Get episodes list and links
-      var episodeDiv = $(".tnContent").attr("style", "display: none;");
+      let episodeDiv = $(".tnContent").attr("style", "display: none;");
       episodeDiv.find("li").each((i, el) => {
-        var link = {};
+        let link = {};
         link.href = $(el).find("a").attr("href");
         link.episode = $(el).find("a").text();
         episodeList.push(link);

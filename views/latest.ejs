@@ -13,9 +13,9 @@
     </div>
     <div class="page-single">
             <div class="container">
-                    <div class="topbar-filter">
+                    <!-- <div class="topbar-filter">
                             <p class="pad-change"><span><%= total %></span></p>
-                        </div>
+                        </div> -->
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                             <% latest.forEach(function(item){ %>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                        <% }) %>
-                        <ul class="pagination">
+                        <!-- <ul class="pagination">
                                 <% links.forEach(function(item){ %>
                                     <% if(item.class == 'page_select') {%>
                                     <li class="active"><a href="#"><%= item.text %></a></li>
@@ -43,7 +43,7 @@
                                                 <li><a class="load-manga" href="<%= item.href %>"><%= item.text %></a></li>
                                 <%} }) %>
                            
-                        </ul> 
+                        </ul>  -->
                     </div>
                     <form id="mahi" action="loader" method="post">
                         <input type="hidden" name="link" id="linker">
