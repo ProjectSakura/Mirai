@@ -10,10 +10,79 @@ const cheerio = require("cheerio");
 // getGenreManga;
 
 class MangaPark {
+  getLatestMangaData() {
+    const url = "https://mangapark.net/latest";
+    return new Promise((resolve, reject) => {
+      http.get(url, (resp) => {
+        let html = "";
+
+        resp.on("data", (chunk) => {
+          html += chunk;
+        });
+
+        resp.on("end", () => {
+          try {
+            const $ = cheerio.load(html);
+            let mangaArr = [];
+            let tempObj = {};
+
+            if ($("body").find($(".no-match")).length !== 0) {
+              resolve({
+                LatestManga: [],
+              });
+            } else {
+              $(".ls1")
+                .children("div")
+                .each((idx, el) => {
+                  let title = $(el)
+                    .children("ul")
+                    .children("h3")
+                    .children("a")
+                    .text()
+                    .trim();
+                  let link = $(el)
+                    .children("a")
+
+                    .attr("href");
+                  link = "https://mangapark.net" + link;
+                  let imageLink = $(el)
+                    .children("a")
+                    .children("img")
+                    .attr("data-cfsrc");
+                  // item.mangaLink = $(eld).children().first("a").attr("href");
+                  // item.imageLink = $(eld).find("img").attr("src");
+                  // item.views = $(eld).find(".aye_icon").text();
+                  // item.description = $(eld).find("p").text();
+                  // item.title = $(eld).find("h3 a").text();
+                  // item.update = $(eld).find(".list-story-item-wrap-chapter").text();
+                  // item.updateLink = $(eld);
+                  console.log(title);
+                  // console.log(link);
+                  // console.log(imageLink);
+                  tempObj = {
+                    description: "",
+                    title: title,
+                    mangaLink: link,
+                    imageLink: imageLink,
+                    update: "",
+                    updateLink: "",
+                  };
+                  mangaArr.push(tempObj);
+                });
+
+              resolve({
+                LatestManga: mangaArr,
+              });
+            }
+          } catch (e) {
+            console.log(e);
+          }
+        });
+      });
+    });
+  }
   getImageList(url) {
-    // console.log(url);
     url = url.substring(0, url.lastIndexOf("/"));
-    // console.log(url);
     return new Promise((resolve, reject) => {
       http.get(url, (resp) => {
         let html = "";

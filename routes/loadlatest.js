@@ -1,51 +1,23 @@
 const express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
-
+const mangaPark = require("./mangaPark");
+const mangaParkObj = new mangaPark();
 const router = express.Router();
 
-router.get("/", function (req, res, next) {
-  let latest = [];
-  request(
-    "https://mangakakalot.com/manga_list?type=latest",
-    (error, response, html) => {
-      if (!error && response.statusCode == 200) {
-        const $ = cheerio.load(html);
-        $(".truyen-list .list-truyen-item-wrap").each((j, eld) => {
-          let item = {};
-          item.mangaLink = $(eld).children().first("a").attr("href");
-          item.imageLink = $(eld).find("img").attr("src");
-          item.views = $(eld).find(".aye_icon").text();
-          item.description = $(eld).find("p").text();
-          item.title = $(eld).find("h3 a").text();
-          item.update = $(eld).find(".list-story-item-wrap-chapter").text();
-          item.updateLink = $(eld)
-            .find(".list-story-item-wrap-chapter")
-            .attr("href");
-          latest.push(item);
-        });
-        let total = $(".panel_page_number .group_qty").find("a").text();
-        let links = [];
-        $(".panel_page_number .group_page a").each((y, elx) => {
-          let link = {};
-          link.text = $(elx).text();
-          link.href = $(elx).attr("href");
-          link.class = $(elx).attr("class");
-          links.push(link);
-        });
-        console.log(links);
-        console.log(latest);
-        console.log(total);
-        res.render("latest", {
-          title: "Mirai",
-          latest: latest,
-          total: total,
-          links: links,
-        });
-      } else {
-        console.log(error);
-      }
-    }
-  );
+// item.mangaLink = $(eld).children().first("a").attr("href");
+// item.imageLink = $(eld).find("img").attr("src");
+// item.views = $(eld).find(".aye_icon").text();
+// item.description = $(eld).find("p").text();
+// item.title = $(eld).find("h3 a").text();
+// item.update = $(eld).find(".list-story-item-wrap-chapter").text();
+// item.updateLink = $(eld);
+router.get("/", async function (req, res, next) {
+  const data = await mangaParkObj.getLatestMangaData();
+  // console.log(data.LatestManga);
+  res.render("latest", {
+    title: "Mirai",
+    latest: data.LatestManga,
+  });
 });
 module.exports = router;
