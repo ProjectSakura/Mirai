@@ -1,9 +1,9 @@
 {
-  "name": "Mirai",
+  "name": "mirai",
   "version": "10.16.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
   "engines": {
     "node": "10.16.0"

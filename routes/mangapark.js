@@ -56,7 +56,7 @@ class MangaPark {
                   // item.title = $(eld).find("h3 a").text();
                   // item.update = $(eld).find(".list-story-item-wrap-chapter").text();
                   // item.updateLink = $(eld);
-                  console.log(title);
+                  // console.log(title);
                   // console.log(link);
                   // console.log(imageLink);
                   tempObj = {
@@ -150,7 +150,7 @@ class MangaPark {
               .text()
               .replace("Webtoon", "")
               .trim();
-            console.log(title);
+            // console.log(title);
             resolve({ name: title, next: next, back: prev });
           } catch (e) {
             console.log(e);

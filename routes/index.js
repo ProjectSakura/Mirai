@@ -1,7 +1,7 @@
 var express = require("express");
 const request = require("request");
 const cheerio = require("cheerio");
-const mangaPark = require("./mangaPark");
+const mangaPark = require("./mangapark");
 const mangaParkObj = new mangaPark();
 var router = express.Router();
 
@@ -97,18 +97,19 @@ router.get("/", async function (req, res, next) {
           ongoing.mainLink = $(el).find(".blb-image").attr("href");
           ongoing.imageLink = $(el).find(".blb-image img").attr("src");
           ongoing.title = $(el).find(".blb-title").text();
+          console.log(ongoing);
           $(el)
             .find(".blb-links a")
             .each((j, elj) => {
-              // if (j == 20) {
-              //   break;
-              // }
-              genre.push($(elj).text());
+              if (j <= 20) {
+                genre.push($(elj).text());
+              }
+              
             });
           ongoing.genre = genre;
           ongoingList.push(ongoing);
         });
-        // console.log(updateList);
+        console.log(ongoingList);
       } else {
         console.log(error);
       }
@@ -118,7 +119,7 @@ router.get("/", async function (req, res, next) {
   // Fetch Gogoanime latest manga links
   // getMangaList
   mangass = await mangaParkObj.getMangaList(1);
-  console.log(ongoingList);
+  // console.log(ongoingList);
   res.render("index", {
     title: "Mirai",
     navList: navList,

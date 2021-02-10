@@ -1,5 +1,5 @@
 const express = require("express");
-const mangaPark = require("./mangaPark");
+const mangaPark = require("./mangapark");
 const mangaParkObj = new mangaPark();
 const router = express.Router();
 
