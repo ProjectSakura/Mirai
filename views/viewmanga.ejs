@@ -1,28 +1,32 @@
 <% include include/header %>
-<style>
-#info { 
-    height: 60px; 
-    position: fixed; 
-    bottom:0%;
-    width:100%; 
-    background-color: #020d18; 
-    opacity: 1;
-    text-align: center;
-}
-</style>
-<div class="hero common-hero">
+    <style>
+        #info {
+            height: 60px;
+            position: fixed;
+            bottom: 0%;
+            width: 100%;
+            background-color: #020d18;
+            opacity: 1;
+            text-align: center;
+        }
+    </style>
+    <div class="hero common-hero">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="hero-ct" style="padding-bottom: 20px;">
-                        <h1> <%= details.name %></h1> 
-                      
+                        <h1>
+                            <%= details.name %>
+                        </h1>
+
                     </div>
                     <% if(details.back){ %>
-                    <a href="viewmanga?url=<%= details.back %>" class="item item-1 redbtn"><i class="fa fa-angle-double-left"></i> Previous Chapter</a>
-                    <% }if(details.next){ %>
-                    <a href="viewmanga?url=<%= details.next %>" class="item item-1 yellowbtn"> Next Chapter  <i class="fa fa-angle-double-right"></i></a>
-                    <% } %>  
+                        <a href="viewmanga?url=<%= details.back %>" class="item item-1 redbtn"><i
+                                class="fa fa-angle-double-left"></i> Previous Chapter</a>
+                        <% }if(details.next){ %>
+                            <a href="viewmanga?url=<%= details.next %>" class="item item-1 yellowbtn"> Next Chapter <i
+                                    class="fa fa-angle-double-right"></i></a>
+                            <% } %>
                 </div>
             </div>
         </div>
@@ -33,32 +37,29 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="blog-detail-ct" style="text-align: center;">
-                            <ul id="images">
-                            <% images.forEach(function(item){  %>
-                        <li><img src="<%= item %>"></li>
-                        <% }) %>
-                    </ul>
-                    <% if(details.back){ %>
-                        <a href="viewmanga?url=<%= details.back %>" class="item item-1 redbtn"><i class="fa fa-angle-double-left"></i> Previous Chapter</a>
-                        <% }if(details.next){ %>
-                        <a href="viewmanga?url=<%= details.next %>" class="item item-1 yellowbtn"> Next Chapter  <i class="fa fa-angle-double-right"></i></a>
-                        <% } %>  
-                        </div>
-                      
+                        <ul id="images">
+                            <% images.forEach(function(item){ %>
+                                <li><img src="<%= item %>"></li>
+                                <% }) %>
+                        </ul>
+                        <% if(details.back){ %>
+                            <a href="viewmanga?url=<%= details.back %>" class="item item-1 redbtn"><i
+                                    class="fa fa-angle-double-left"></i> Previous Chapter</a>
+                            <% }if(details.next){ %>
+                                <a href="viewmanga?url=<%= details.next %>" class="item item-1 yellowbtn"> Next Chapter
+                                    <i class="fa fa-angle-double-right"></i></a>
+                                <% } %>
                     </div>
+
                 </div>
-              
             </div>
+
         </div>
     </div>
-    <!-- <div id="info">
-        <input id="rate" type="number" style="width:90px;position: absolute;left: 35%;transform: translateX(-50%); top:14px;" value="80">
-        <button id="start" class="item item-1 yellowbtn" style="padding: 10px;position: relative;top:8px;">Start Auto Scroll</button>
-        <button id="stop" class="item item-1 redbtn" style="padding: 10px;position: relative;top:8px;">Stop Auto Scroll</button>
-    </div> -->
+    </div>
+
     <script src="javascripts/jquery.js"></script>
-  <script>
-   
-  </script>
-    <!-- end of  blog detail section-->
-<% include include/footer %>
+    <script>
+
+    </script>
+    <% include include/footer %>

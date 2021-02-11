@@ -1,35 +1,41 @@
 <% include include/header %>
 <div class="hero common-hero">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="hero-ct">
-                        <h1> Latest Manga</h1>
-                       
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="hero-ct">
+          <h1>Latest Manga</h1>
         </div>
+      </div>
     </div>
-    <div class="page-single">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <% latest.forEach(function(item){ %>
-                        <div class="blog-item-style-1 blog-item-style-3">
-                            <img src="<%= item.imageLink %>" alt="" style="width:60px !important;">
-                            <div class="blog-it-infor">
-                                <h3><a class="manga" href="<%= item.mangaLink %>"><%= item.title %></a></h3>
-                            </div>
-                        </div>
-                       <% }) %>
-                    </div>
-                    <form id="mahi" action="loader" method="post">
-                        <input type="hidden" name="link" id="linker">
-                    </form>
-                    
-                </div>
-            </div>
+  </div>
+</div>
+<div class="page-single">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <% latest.forEach(function(item){ %>
+        <div class="blog-item-style-1 blog-item-style-3">
+          <img
+            src="<%= item.imageLink %>"
+            alt=""
+            style="width: 60px !important"
+          />
+          <div class="blog-it-infor">
+            <h3>
+              <a class="manga" href="<%= item.mangaLink %>"
+                ><%= item.title %></a
+              >
+            </h3>
+          </div>
         </div>
+        <% }) %>
+      </div>
+      <form id="mahi" action="loader" method="post">
+        <input type="hidden" name="link" id="linker" />
+      </form>
+    </div>
+  </div>
+</div>
 
-        <% include include/footer %>
+<% include include/footer %>

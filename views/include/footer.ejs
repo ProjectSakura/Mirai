@@ -109,9 +109,9 @@
 						// var OBJ = JSON.parse(data);
 						$('#search_result').show();
 						console.log(data);
-						data.forEach((val)=>{
-							const arr=val.link.replace("https://mangapark.net/manga/","");
-							string = string + '<li ><img src="' + val.thumb + '" style="position:relative;top:5px;width:40px;height:56px;margin-right:10px;display:inline-block;"><div style="display:inline;"><a class="manga" style="position: relative;top: -15px;color:#fff;font-family: \'Dosis\', sans-serif;font-weight: bold;text-transform: uppercase;cursor: pointer;" href="loadmanga?url=' + val.link + '">' + arr+ '</a></div></li>';
+						data.forEach((val) => {
+							const arr = val.link.replace("https://mangapark.net/manga/", "");
+							string = string + '<li ><img src="' + val.thumb + '" style="position:relative;top:5px;width:40px;height:56px;margin-right:10px;display:inline-block;"><div style="display:inline;"><a class="manga" style="position: relative;top: -15px;color:#fff;font-family: \'Dosis\', sans-serif;font-weight: bold;text-transform: uppercase;cursor: pointer;" href="loadmanga?url=' + val.link + '">' + arr + '</a></div></li>';
 						})
 						$('#search_result ul').append(string);
 					}
