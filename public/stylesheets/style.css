@@ -8037,7 +8037,6 @@ header#headerv3-light {
 }
 .sticky {
   background-color: #0f2133;
-  position: fixed;
   width: 100%;
   z-index: 9999;
   -moz-opacity: 1;
