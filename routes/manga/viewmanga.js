@@ -1,16 +1,7 @@
 const express = require("express");
-const mangaPark = require("../../utils/mangapark");
-const mangaParkObj = new mangaPark();
 const router = express.Router();
+const { RenderViewManga } = require("../../controllers/manga.controller");
 
-router.get("/", async function (req, res, next) {
-  const url = req.query.url;
-  const image = await mangaParkObj.getImageList(url);
-  const information = await mangaParkObj.getChapterInfo(url);
-  res.render("viewmanga", {
-    title: "Anime Master",
-    images: image.images,
-    details: information,
-  });
-});
+router.get("/", RenderViewManga);
+
 module.exports = router;
