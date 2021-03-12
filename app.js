@@ -5,14 +5,14 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
-const loadRouter = require("./routes/loadpage");
-const videoRouter = require("./routes/loadvideo");
-const animeList = require("./routes/animelist");
-const searchRoute = require("./routes/search");
-const loadManga = require("./routes/loadmanga");
-const loadChapter = require("./routes/viewmanga");
-const loadLatest = require("./routes/loadlatest");
-const loaderRoute = require("./routes/loader");
+const loadRouter = require("./routes/loader/loadpage");
+const animeList = require("./routes/loader/animelist");
+const loaderRoute = require("./routes/loader/loader");
+const loadManga = require("./routes/manga/loadmanga");
+const loadChapter = require("./routes/manga/viewmanga");
+const loadLatest = require("./routes/manga/loadlatest");
+const searchRoute = require("./routes/search/search");
+const videoRouter = require("./routes/stream/loadvideo");
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
