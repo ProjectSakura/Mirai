@@ -113,15 +113,18 @@ const RenderHomePage = async (req, res, next) => {
     mangass = await mangaParkObj.getMangaList(1);
     const mangaUpdateList = mangass.LatestManga;
 
-    res.render("index", {
-        title: "Mirai",
-        navList: navList,
-        updateList: updateList,
-        mangaUpdateList: mangaUpdateList,
-        newAnimeList: newAnimeList,
-        popularList: popularList,
-        ongoingList: ongoingList,
-    });
+    setTimeout(function(){
+        res.render("index", {
+            title: "Mirai",
+            navList: navList,
+            updateList: updateList,
+            mangaUpdateList: mangaUpdateList,
+            newAnimeList: newAnimeList,
+            popularList: popularList,
+            ongoingList: ongoingList,
+        });
+    }, 
+    3000);
 };
 
 module.exports = RenderHomePage;
