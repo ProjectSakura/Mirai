@@ -2,14 +2,21 @@ const mangaPark = require("../utils/mangapark");
 const mangaParkObj = new mangaPark();
 
 const RenderLatestManga = async (req, res, next) => {
+    try{
     const data = await mangaParkObj.getLatestMangaData();
     res.render("latest", {
         title: "Mirai",
         latest: data.LatestManga,
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 const RenderLoadManga = async (req, res, next) => {
+    try{
     var url = req.query.url;
     const manga = await mangaParkObj.getMangaInfo(url);
     res.render("loadmanga", {
@@ -24,9 +31,15 @@ const RenderLoadManga = async (req, res, next) => {
 
         chapterList: manga.mangaInfo.chapterList,
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 const RenderViewManga = async (req, res, next) => {
+    try{
     const url = req.query.url;
     const image = await mangaParkObj.getImageList(url);
     const information = await mangaParkObj.getChapterInfo(url);
@@ -35,6 +48,11 @@ const RenderViewManga = async (req, res, next) => {
         images: image.images,
         details: information,
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 module.exports = {

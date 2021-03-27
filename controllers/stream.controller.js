@@ -16,10 +16,12 @@ request("https://www.gogoanime1.com", (error, response, html) => {
         });
     } else {
         console.log(error);
+        res.render("error");
     }
 });
 
 const RenderPlayEpisode = (req, res, next) => {
+    try{
     let url = req.query.url;
     //generate series URL by exploding
     let split = url.split("/");
@@ -64,9 +66,15 @@ const RenderPlayEpisode = (req, res, next) => {
             console.log(error);
         }
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 const VideoURLController = (req, res) => {
+    try{
     request(req.body.link, (error, response, html) => {
         if (!error && response.statusCode == 200) {
             const $ = cheerio.load(html);
@@ -81,6 +89,11 @@ const VideoURLController = (req, res) => {
             console.log(error);
         }
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 module.exports = {

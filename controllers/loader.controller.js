@@ -17,10 +17,12 @@ request("https://www.gogoanime1.com", (error, response, html) => {
         });
     } else {
         console.log(error);
+        res.render("error");
     }
 });
 
 const RenderAnimeList = (req, res, next) => {
+    try{
     const url = req.query.url;
     let series = [];
     request(url, (error, response, html) => {
@@ -46,9 +48,15 @@ const RenderAnimeList = (req, res, next) => {
             console.log(error);
         }
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 const LoaderController = (req, res, next) => {
+    try{
     let latestk = [];
     let url = req.body.link;
     request(url, (error, response, html) => {
@@ -87,9 +95,15 @@ const LoaderController = (req, res, next) => {
             console.log(error);
         }
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 const RenderLoadEpisodes = (req, res, next) => {
+    try{
     let url = req.query.url;
     let episodeList = [];
     let detailer = [];
@@ -127,9 +141,15 @@ const RenderLoadEpisodes = (req, res, next) => {
             console.log(error);
         }
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 const RenderNewLoader = (req, res, next) => {
+    try{
     let latestk = [];
     let url = req.body.link;
     request(url, (error, response, html) => {
@@ -168,6 +188,11 @@ const RenderNewLoader = (req, res, next) => {
             console.log(error);
         }
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 module.exports = {

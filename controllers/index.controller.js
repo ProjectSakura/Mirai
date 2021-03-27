@@ -4,6 +4,7 @@ const mangaPark = require("../utils/mangapark");
 const mangaParkObj = new mangaPark();
 
 const RenderHomePage = async (req, res, next) => {
+    try{
     var navList = [];
     var updateList = [];
     var newAnimeList = [];
@@ -122,6 +123,11 @@ const RenderHomePage = async (req, res, next) => {
         popularList: popularList,
         ongoingList: ongoingList,
     });
+}
+catch(err){
+    console.log(err);
+    res.render("error");
+}
 };
 
 module.exports = RenderHomePage;
