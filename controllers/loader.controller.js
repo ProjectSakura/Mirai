@@ -17,7 +17,6 @@ request("https://www.gogoanime1.com", (error, response, html) => {
         });
     } else {
         console.log(error);
-        res.render("error");
     }
 });
 
@@ -51,7 +50,7 @@ const RenderAnimeList = (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 
@@ -98,7 +97,7 @@ const LoaderController = (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 
@@ -144,7 +143,7 @@ const RenderLoadEpisodes = (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 
@@ -191,7 +190,7 @@ const RenderNewLoader = (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 

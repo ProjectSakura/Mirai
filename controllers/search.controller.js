@@ -13,7 +13,7 @@ const SearchController = (req, res, next) => {
     }
     catch(err){
         console.log(err);
-        res.render("error");
+        
     }
 };
 
@@ -24,7 +24,7 @@ const MangaSearchController = async (req, res, next) => {
     }
     catch(err){
         console.log(err);
-        res.render("error");
+        
     }
 };
 

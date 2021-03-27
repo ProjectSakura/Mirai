@@ -11,7 +11,7 @@ const RenderLatestManga = async (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 
@@ -34,7 +34,7 @@ const RenderLoadManga = async (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 
@@ -51,7 +51,7 @@ const RenderViewManga = async (req, res, next) => {
 }
 catch(err){
     console.log(err);
-    res.render("error");
+    
 }
 };
 
