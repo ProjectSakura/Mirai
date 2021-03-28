@@ -4,124 +4,129 @@ const mangaPark = require("../utils/mangapark");
 const mangaParkObj = new mangaPark();
 
 const RenderHomePage = async (req, res, next) => {
-    var navList = [];
-    var updateList = [];
-    var newAnimeList = [];
-    var popularList = [];
-    var ongoingList = [];
+    try{
+        var navList = [];
+        var updateList = [];
+        var newAnimeList = [];
+        var popularList = [];
+        var ongoingList = [];
 
-    // Fetch Gogoanime popular anime links
-    request(
-        "https://www.gogoanime1.com/home/popular-animes",
-        (error, response, html) => {
-            if (!error && response.statusCode == 200) {
-                const $ = cheerio.load(html);
+        // Fetch Gogoanime popular anime links
+        request(
+            "https://www.gogoanime1.com/home/popular-animes",
+            (error, response, html) => {
+                if (!error && response.statusCode == 200) {
+                    const $ = cheerio.load(html);
 
-                $(".big-list .wide-anime-box").each((i, el) => {
-                    var anime = {};
-                    var genre = [];
-                    anime.picture = $(el).find(".anime-image").attr("style");
-                    anime.link = $(el).find(".anime-image").attr("href");
-                    anime.name = $(el).find(".wab-title a").text();
-                    anime.description = $(el).find(".wab-desc").text();
-                    $(el)
-                        .find(".wab-links a")
-                        .each((j, ex) => {
-                            genre.push($(ex).text());
-                        });
-                    anime.genre = genre;
-                    popularList.push(anime);
-                });
-            } else {
-                console.log(error);
-            }
-        }
-    );
-
-    // Fetch Gogoanime latest up[date] links
-    request("https://www.gogoanime1.com", (error, response, html) => {
-        if (!error && response.statusCode == 200) {
-            const $ = cheerio.load(html);
-
-            $(".main-menu li").each((i, el) => {
-                var link = {};
-                link.href = $(el).find("a").attr("href");
-                link.text = $(el).find("a").text();
-                navList.push(link);
-            });
-
-            $(".animeList .nl-item").each((i, el) => {
-                var update = {};
-                update.mainLink = $(el).find(".nli-image").attr("href");
-                update.imageLink = $(el).find(".nli-image img").attr("src");
-                update.epLink = $(el).find(".nli-ep").attr("href");
-                update.epName = $(el).find(".nli-ep").text();
-                update.epUpdate = $(el).find(".release").text();
-                updateList.push(update);
-            });
-
-            $(".tnTabber .bl-grid").each((i, el) => {
-                var newanime = {};
-                var genre = [];
-                newanime.animeLink = $(el).find(".blb-image").attr("href");
-                newanime.imageLink = $(el).find(".blb-image img").attr("src");
-                newanime.animeTitle = $(el).find(".blb-title").text();
-                $(el)
-                    .find(".blb-links a")
-                    .each((j, elv) => {
-                        genre.push($(elv).text());
+                    $(".big-list .wide-anime-box").each((i, el) => {
+                        var anime = {};
+                        var genre = [];
+                        anime.picture = $(el).find(".anime-image").attr("style");
+                        anime.link = $(el).find(".anime-image").attr("href");
+                        anime.name = $(el).find(".wab-title a").text();
+                        anime.description = $(el).find(".wab-desc").text();
+                        $(el)
+                            .find(".wab-links a")
+                            .each((j, ex) => {
+                                genre.push($(ex).text());
+                            });
+                        anime.genre = genre;
+                        popularList.push(anime);
                     });
-                newanime.genre = genre;
-                newAnimeList.push(newanime);
-            });
-        } else {
-            console.log(error);
-        }
-    });
+                } else {
+                    console.log(error);
+                }
+            }
+        );
 
-    // Fetch Gogoanime latest up[date] links
-    request(
-        "https://www.gogoanime1.com/home/ongoing",
-        (error, response, html) => {
+        // Fetch Gogoanime latest up[date] links
+        request("https://www.gogoanime1.com", (error, response, html) => {
             if (!error && response.statusCode == 200) {
                 const $ = cheerio.load(html);
 
-                $(".big-list .bl-grid").each((i, el) => {
-                    var ongoing = {};
+                $(".main-menu li").each((i, el) => {
+                    var link = {};
+                    link.href = $(el).find("a").attr("href");
+                    link.text = $(el).find("a").text();
+                    navList.push(link);
+                });
+
+                $(".animeList .nl-item").each((i, el) => {
+                    var update = {};
+                    update.mainLink = $(el).find(".nli-image").attr("href");
+                    update.imageLink = $(el).find(".nli-image img").attr("src");
+                    update.epLink = $(el).find(".nli-ep").attr("href");
+                    update.epName = $(el).find(".nli-ep").text();
+                    update.epUpdate = $(el).find(".release").text();
+                    updateList.push(update);
+                });
+
+                $(".tnTabber .bl-grid").each((i, el) => {
+                    var newanime = {};
                     var genre = [];
-                    ongoing.mainLink = $(el).find(".blb-image").attr("href");
-                    ongoing.imageLink = $(el).find(".blb-image img").attr("src");
-                    ongoing.title = $(el).find(".blb-title").text();
-                    console.log(ongoing);
+                    newanime.animeLink = $(el).find(".blb-image").attr("href");
+                    newanime.imageLink = $(el).find(".blb-image img").attr("src");
+                    newanime.animeTitle = $(el).find(".blb-title").text();
                     $(el)
                         .find(".blb-links a")
-                        .each((j, elj) => {
-                            if (j <= 20) {
-                                genre.push($(elj).text());
-                            }
+                        .each((j, elv) => {
+                            genre.push($(elv).text());
                         });
-                    ongoing.genre = genre;
-                    ongoingList.push(ongoing);
+                    newanime.genre = genre;
+                    newAnimeList.push(newanime);
                 });
-                console.log(ongoingList);
             } else {
                 console.log(error);
             }
-        }
-    );
+        });
 
-    mangass = await mangaParkObj.getMangaList(1);
-    const mangaUpdateList = mangass.LatestManga;
+        // Fetch Gogoanime latest up[date] links
+        request(
+            "https://www.gogoanime1.com/home/ongoing",
+            (error, response, html) => {
+                if (!error && response.statusCode == 200) {
+                    const $ = cheerio.load(html);
 
-    res.render("index", {
-        title: "Mirai",
-        navList: navList,
-        updateList: updateList,
-        mangaUpdateList: mangaUpdateList,
-        newAnimeList: newAnimeList,
-        popularList: popularList,
-        ongoingList: ongoingList,
-    });
+                    $(".big-list .bl-grid").each((i, el) => {
+                        var ongoing = {};
+                        var genre = [];
+                        ongoing.mainLink = $(el).find(".blb-image").attr("href");
+                        ongoing.imageLink = $(el).find(".blb-image img").attr("src");
+                        ongoing.title = $(el).find(".blb-title").text();
+                        console.log(ongoing);
+                        $(el)
+                            .find(".blb-links a")
+                            .each((j, elj) => {
+                                if (j <= 20) {
+                                    genre.push($(elj).text());
+                                }
+                            });
+                        ongoing.genre = genre;
+                        ongoingList.push(ongoing);
+                    });
+                    console.log(ongoingList);
+                } else {
+                    console.log(error);
+                }
+            }
+        );
+
+        mangass = await mangaParkObj.getMangaList(1);
+        const mangaUpdateList = mangass.LatestManga;
+
+        res.render("index", {
+            title: "Mirai",
+            navList: navList,
+            updateList: updateList,
+            mangaUpdateList: mangaUpdateList,
+            newAnimeList: newAnimeList,
+            popularList: popularList,
+            ongoingList: ongoingList,
+        });
+    }
+    catch(err){
+        console.log(err);
+    }
 };
 
 module.exports = RenderHomePage;
