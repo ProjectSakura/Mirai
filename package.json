@@ -3,7 +3,8 @@
   "version": "10.16.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "engines": {
     "node": "10.16.0"
@@ -20,7 +21,7 @@
     "http-errors": "~1.6.3",
     "js-base64": "^3.6.0",
     "morgan": "~1.9.1",
-    "request": "^2.88.0",
+    "node-fetch": "^2.6.1",
     "webtorrent": "^0.103.1"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-const request = require("request");
+const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 const mangaPark = require("../utils/mangapark");
 const mangaParkObj = new mangaPark();
@@ -12,36 +12,47 @@ const RenderHomePage = async (req, res, next) => {
         var ongoingList = [];
 
         // Fetch Gogoanime popular anime links
-        request(
-            "https://www.gogoanime1.com/home/popular-animes",
-            (error, response, html) => {
-                if (!error && response.statusCode == 200) {
-                    const $ = cheerio.load(html);
-
-                    $(".big-list .wide-anime-box").each((i, el) => {
-                        var anime = {};
-                        var genre = [];
-                        anime.picture = $(el).find(".anime-image").attr("style");
-                        anime.link = $(el).find(".anime-image").attr("href");
-                        anime.name = $(el).find(".wab-title a").text();
-                        anime.description = $(el).find(".wab-desc").text();
-                        $(el)
-                            .find(".wab-links a")
-                            .each((j, ex) => {
-                                genre.push($(ex).text());
-                            });
-                        anime.genre = genre;
-                        popularList.push(anime);
-                    });
+        fetch("https://www.gogoanime1.com/home/popular-animes")
+            .then(response => {
+                if(response.ok) {   // response.status >= 200 & < 300
+                    return response.text();
                 } else {
-                    console.log(error);
+                    throw Error(response.statusText);
                 }
-            }
-        );
+            })
+            .then(html => {
+                const $ = cheerio.load(html);
+
+                $(".big-list .wide-anime-box").each((i, el) => {
+                    var anime = {};
+                    var genre = [];
+                    anime.picture = $(el).find(".anime-image").attr("style");
+                    anime.link = $(el).find(".anime-image").attr("href");
+                    anime.name = $(el).find(".wab-title a").text();
+                    anime.description = $(el).find(".wab-desc").text();
+                    $(el)
+                        .find(".wab-links a")
+                        .each((j, ex) => {
+                            genre.push($(ex).text());
+                        });
+                    anime.genre = genre;
+                    popularList.push(anime);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+            })
 
         // Fetch Gogoanime latest up[date] links
-        request("https://www.gogoanime1.com", (error, response, html) => {
-            if (!error && response.statusCode == 200) {
+        fetch("https://www.gogoanime1.com")
+            .then(response => {
+                if(response.ok) {   // response.status >= 200 & < 300
+                    return response.text();
+                } else {
+                    throw Error(response.statusText);
+                }
+            })
+            .then(html => {
                 const $ = cheerio.load(html);
 
                 $(".main-menu li").each((i, el) => {
@@ -75,41 +86,45 @@ const RenderHomePage = async (req, res, next) => {
                     newanime.genre = genre;
                     newAnimeList.push(newanime);
                 });
-            } else {
-                console.log(error);
-            }
-        });
+            })
+            .catch(err => {
+                console.error(err);
+            })
 
         // Fetch Gogoanime latest up[date] links
-        request(
-            "https://www.gogoanime1.com/home/ongoing",
-            (error, response, html) => {
-                if (!error && response.statusCode == 200) {
-                    const $ = cheerio.load(html);
-
-                    $(".big-list .bl-grid").each((i, el) => {
-                        var ongoing = {};
-                        var genre = [];
-                        ongoing.mainLink = $(el).find(".blb-image").attr("href");
-                        ongoing.imageLink = $(el).find(".blb-image img").attr("src");
-                        ongoing.title = $(el).find(".blb-title").text();
-                        console.log(ongoing);
-                        $(el)
-                            .find(".blb-links a")
-                            .each((j, elj) => {
-                                if (j <= 20) {
-                                    genre.push($(elj).text());
-                                }
-                            });
-                        ongoing.genre = genre;
-                        ongoingList.push(ongoing);
-                    });
-                    console.log(ongoingList);
+        fetch("https://www.gogoanime1.com/home/ongoing")
+            .then(response => {
+                if(response.ok) {   // response.status >= 200 & < 300
+                    return response.text();
                 } else {
-                    console.log(error);
+                    throw Error(response.statusText);
                 }
-            }
-        );
+            })
+            .then(html => {
+                const $ = cheerio.load(html);
+
+                $(".big-list .bl-grid").each((i, el) => {
+                    var ongoing = {};
+                    var genre = [];
+                    ongoing.mainLink = $(el).find(".blb-image").attr("href");
+                    ongoing.imageLink = $(el).find(".blb-image img").attr("src");
+                    ongoing.title = $(el).find(".blb-title").text();
+                    console.log(ongoing);
+                    $(el)
+                        .find(".blb-links a")
+                        .each((j, elj) => {
+                            if (j <= 20) {
+                                genre.push($(elj).text());
+                            }
+                        });
+                    ongoing.genre = genre;
+                    ongoingList.push(ongoing);
+                });
+                console.log(ongoingList);
+            })
+            .catch(err => {
+                console.error(err);
+            })
 
         mangass = await mangaParkObj.getMangaList(1);
         const mangaUpdateList = mangass.LatestManga;
