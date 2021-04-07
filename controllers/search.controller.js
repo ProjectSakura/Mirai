@@ -1,19 +1,24 @@
-const request = require("request");
+const fetch = require("node-fetch");
 const mangaPark = require("../utils/mangapark");
 const mangaParkObj = new mangaPark();
 
 const SearchController = (req, res, next) => {
-    try{
-        request(
-            "https://www.gogoanime1.com/search/topSearch?q=" + req.query.q,
-            (error, response, html) => {
-                res.send(response.body);
+    fetch("https://www.gogoanime1.com/search/topSearch?q=" + req.query.q)
+        .then(response => {
+            if (response.ok) {   // response.status >= 200 & < 300
+                return response.json(); // this API endpoint returns json
+            } else {
+                throw Error(response.statusText);
             }
-        );
-    }
-    catch(err){
-        console.log(err);
-    }
+        })
+        .then(json => {
+            res.send(json);
+        })
+        .catch(err => {
+            console.error(err);
+
+            res.sendStatus(err.status || 500)
+        })
 };
 
 const MangaSearchController = async (req, res, next) => {
